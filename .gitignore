@@ -13,3 +13,13 @@ build/Release
 
 # Dependency directory
 node_modules
+
+# Log files, temp files, backups etc
+*.log
+*.tmp
+*.temp
+*.bak
+
+# Common Annoyances
+*.DS_Store
+thumbs.db
