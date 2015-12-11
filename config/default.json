@@ -1,0 +1,90 @@
+{
+    "build": {
+        // Client-side application bundling and packaging.
+        "bundle": {
+            // Application entry point for application
+            "entryPoint": "./index.js",
+            
+            // Don't mangle names when uglifying.
+            "mangleNames": false,
+            
+            // Name of browserified, babelified output file.
+            "outputFile": "eventsauce.js",
+            
+            // Name of browserified, babelified, uglified output file.
+            "outputFileMinified": "eventsauce.min.js",
+            
+            // Directory to write files to
+            "outputPath": "./dist",
+            
+            // Directory to write source-maps to
+            "sourceMapsPath": "./dist",
+            
+            // Babel options
+            "transpiler": {
+                // Translate ES6 to ES5 for the client.
+                "babel-preset": "es2015"
+            }
+        },
+
+        // Javascript linting
+        "linting": {
+            // Console formatter
+            "formatter": "stylish",
+            
+            "paths": [
+                "./lib/**/*.js"
+            ],
+            "testPaths": [
+              "./tst/**/*.js"
+            ]
+        },
+
+        // Global build flags/options that affect multiple areas.
+        "options": {
+            // Controls debug mode for:
+            //    build-client: browserify
+            "debug": true
+        },
+
+        // Documentation generation
+        "documentation": {
+            // Path to write documentation to
+            "outputPath": "./dist/docs",
+
+            // Include undocumented identifiers
+            "undocumentedIdentifiers": true,
+
+            // Include unexported identifiers, required for CommonJS module notation.
+            "unexportedIdentifiers": true,
+            
+            // Type of tests
+            "testType": "mocha",
+
+            // Root for tests to include in documentation.
+            "testRoot": "./tst/"
+        },
+
+        // Unit-testing
+        "testing": {
+            "findPattern": "./tst/**/*.js",
+            "coverage": {
+                // % of code to cover with tests
+                "enforceThreshold": 90,
+
+                // Include coverage results for files not touched at all by
+                // any of our Mocha tests
+                "includeUntested": true,
+
+                // Instrument all application code
+                "instrumentPath": "./lib/**/*.js",
+
+                // Path to write coverage HTML report to.
+                "outputPath": "./dist/docs/code-coverage",
+
+                // Temporary path for coverage tests
+                "tempPath": "./temp/code-coverage"
+            }
+        }
+    }
+}
