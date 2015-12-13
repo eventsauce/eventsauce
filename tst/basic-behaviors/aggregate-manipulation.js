@@ -73,6 +73,20 @@ describe('Aggregate', () => {
       // Assert
       expect(instance.pendingEvents).to.have.length(2);
     });
+  });
+
+  describe('State management', () => {
+    it('currentState should return the state object', () => {
+      // Arrange
+      const timeKeeper = new TimeKeeper();
+      const instance = new ExampleAggregate(dummyKey, timeKeeper);
+
+      // Act
+      const state = instance.currentState;
+
+      // Assert
+      should.exist(state);
+    });
 
     it('Revision number should only move after commitState()', () => {
       // Arrange
