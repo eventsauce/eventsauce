@@ -1,6 +1,6 @@
 {
   "name": "eventsauce",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "NodeJS Event Sourcing framework written in ECMAScript 6",
   "main": "index.js",
   "scripts": {
@@ -51,6 +51,7 @@
     "vinyl-source-stream": "^1.1.0"
   },
   "dependencies": {
-    "config": "^1.17.1"
+    "config": "^1.17.1",
+    "sprintf-js": "^1.0.3"
   }
 }

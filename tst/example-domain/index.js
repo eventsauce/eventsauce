@@ -6,14 +6,10 @@
  **/
 'use strict';
 
-const Aggregate = require('./aggregate');
-const AggregateSnapshot = require('./aggregate-snapshot');
-const PendingEvent = require('./pending-event');
-const Repository = require('./repository');
+const ExampleAggregate = require('./example-aggregate');
+const ExampleService = require('./example-service');
 
 module.exports = {
-  Aggregate: Aggregate,
-  AggregateSnapshot: AggregateSnapshot,
-  PendingEvent: PendingEvent,
-  Repository: Repository,
+  ExampleAggregate: ExampleAggregate,
+  ExampleService: ExampleService,
 };
