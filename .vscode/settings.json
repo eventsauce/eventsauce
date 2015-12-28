@@ -3,4 +3,10 @@
 	"editor.tabSize": 2,
   "editor.insertSpaces": true,
   "editor.renderWhitespace": true,
+
+	"search.exclude": {
+		"**/node_modules": true,
+		"**/bower_components": true,
+    "dist": true
+	},
 }
