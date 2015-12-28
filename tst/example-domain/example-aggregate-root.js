@@ -11,12 +11,12 @@ const Aggregate = eventSauce.Aggregate;
 const ExampleState = require('./example-state');
 
 /**
- * The ExampleAggregate is an example aggregate that tracks state.
+ * The ExampleAggregateRoot is an example aggregate that tracks state.
  **/
-class ExampleAggregate extends Aggregate {
+class ExampleAggregateRoot extends Aggregate {
 
   /**
-   * Initialize a new instance of the ExampleAggregate.
+   * Initialize a new instance of the ExampleAggregateRoot.
    * @param key           {String}      Aggregate key
    * @param timeKeeper    {Object}      Object that implements the .getTime() method.
    * @param stateObject   {Object}      Original state of aggregate (optional).
@@ -26,7 +26,7 @@ class ExampleAggregate extends Aggregate {
 
     // Validate arguments
     if (!timeKeeper) {
-      throw new Error('Test Error: The ExampleAggregate::ctor() requires the timeKeeper argument to be passed.');
+      throw new Error('Test Error: The ExampleAggregateRoot::ctor() requires the timeKeeper argument to be passed.');
     }
 
     // Build instance
@@ -35,7 +35,7 @@ class ExampleAggregate extends Aggregate {
 
   /**
    * Create the state object for this aggregate.
-   * @returns     {ExampleState}    State for ExampleAggregate.
+   * @returns     {ExampleState}    State for ExampleAggregateRoot.
    **/
   createStateObject() {
     return new ExampleState();
@@ -94,4 +94,4 @@ class ExampleAggregate extends Aggregate {
   }
 }
 
-module.exports = ExampleAggregate;
+module.exports = ExampleAggregateRoot;

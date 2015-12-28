@@ -6,10 +6,10 @@
  **/
 'use strict';
 
-const ExampleAggregate = require('./example-aggregate');
+const ExampleAggregateRoot = require('./example-aggregate-root');
 const ExampleService = require('./example-service');
 
 module.exports = {
-  ExampleAggregate: ExampleAggregate,
+  ExampleAggregateRoot: ExampleAggregateRoot,
   ExampleService: ExampleService,
 };

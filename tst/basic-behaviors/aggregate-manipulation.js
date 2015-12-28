@@ -8,7 +8,7 @@
 /* global describe */
 /* global it */
 const domain = require('../example-domain');
-const ExampleAggregate = domain.ExampleAggregate;
+const ExampleAggregateRoot = domain.ExampleAggregateRoot;
 const TimeKeeper = domain.ExampleService;
 const chai = require('chai');
 const expect = chai.expect;
@@ -23,7 +23,7 @@ describe('Aggregate', () => {
       const timeKeeper = new TimeKeeper();
 
       // Act
-      const instance = new ExampleAggregate(dummyKey, timeKeeper);
+      const instance = new ExampleAggregateRoot(dummyKey, timeKeeper);
 
       // Assert
       should.exist(instance);
@@ -31,11 +31,11 @@ describe('Aggregate', () => {
     });
   });
 
-  describe('Domain logic for ExampleAggregate', () => {
+  describe('Domain logic for ExampleAggregateRoot', () => {
     it('Succeed when creating instance once', () => {
       // Arrange
       const timeKeeper = new TimeKeeper();
-      const instance = new ExampleAggregate(dummyKey, timeKeeper);
+      const instance = new ExampleAggregateRoot(dummyKey, timeKeeper);
 
       // Act
       instance.create();
@@ -47,7 +47,7 @@ describe('Aggregate', () => {
     it('Throw when calling create() operation twice', () => {
       // Arrange
       const timeKeeper = new TimeKeeper();
-      const instance = new ExampleAggregate(dummyKey, timeKeeper);
+      const instance = new ExampleAggregateRoot(dummyKey, timeKeeper);
 
       // Act
       instance.create();
@@ -61,7 +61,7 @@ describe('Aggregate', () => {
     it('Throw when applying undefined state-object event.', () => {
       // Arrange
       const timeKeeper = new TimeKeeper();
-      const instance = new ExampleAggregate(dummyKey, timeKeeper);
+      const instance = new ExampleAggregateRoot(dummyKey, timeKeeper);
 
       // Act
       instance.create();
@@ -79,7 +79,7 @@ describe('Aggregate', () => {
     it('currentState should return the state object', () => {
       // Arrange
       const timeKeeper = new TimeKeeper();
-      const instance = new ExampleAggregate(dummyKey, timeKeeper);
+      const instance = new ExampleAggregateRoot(dummyKey, timeKeeper);
 
       // Act
       const state = instance.currentState;
@@ -91,7 +91,7 @@ describe('Aggregate', () => {
     it('Revision number should only move after commitState()', () => {
       // Arrange
       const timeKeeper = new TimeKeeper();
-      const instance = new ExampleAggregate(dummyKey, timeKeeper);
+      const instance = new ExampleAggregateRoot(dummyKey, timeKeeper);
 
       // Act / Assert: Part 1
       instance.create();
@@ -109,14 +109,14 @@ describe('Aggregate', () => {
     it('Should be able to replay basic event sequence', () => {
       // Arrange
       const timeKeeper = new TimeKeeper();
-      const instance = new ExampleAggregate(dummyKey, timeKeeper);
+      const instance = new ExampleAggregateRoot(dummyKey, timeKeeper);
       instance.create();
       instance.tick();
       instance.tick();
 
       // Act
       const eventStream = instance.pendingEvents;
-      const newAggregate = new ExampleAggregate(dummyKey, instance);
+      const newAggregate = new ExampleAggregateRoot(dummyKey, instance);
       newAggregate.replayEventStream(eventStream);
 
       // Assert
@@ -127,7 +127,7 @@ describe('Aggregate', () => {
     it('Should fail to replay null or empty stream', () => {
       // Arrange
       const timeKeeper = new TimeKeeper();
-      const instance = new ExampleAggregate(dummyKey, timeKeeper);
+      const instance = new ExampleAggregateRoot(dummyKey, timeKeeper);
 
       // Act / Assert
       expect(function withNull() {
@@ -143,7 +143,7 @@ describe('Aggregate', () => {
     it('Cannot create snapshot at revision 0', () => {
       // Arrange
       const timeKeeper = new TimeKeeper();
-      const instance = new ExampleAggregate(dummyKey, timeKeeper);
+      const instance = new ExampleAggregateRoot(dummyKey, timeKeeper);
 
       // Act / Assert
       expect(instance.generateSnapshot).to.throw(Error);
@@ -156,7 +156,7 @@ describe('Aggregate', () => {
       timeKeeper.getTime = function getTimeMock() {
         return mockTime;
       };
-      const instance = new ExampleAggregate(dummyKey, timeKeeper);
+      const instance = new ExampleAggregateRoot(dummyKey, timeKeeper);
 
       // Act
       instance.create();
@@ -179,14 +179,14 @@ describe('Aggregate', () => {
       timeKeeper.getTime = function getTimeMock() {
         return mockTime;
       };
-      const instance = new ExampleAggregate(dummyKey, timeKeeper);
+      const instance = new ExampleAggregateRoot(dummyKey, timeKeeper);
 
       // Act
       instance.create();
       instance.tick();
       instance.commitState();
       const snapshot = instance.generateSnapshot();
-      const newInstance = new ExampleAggregate(dummyKey, timeKeeper, snapshot);
+      const newInstance = new ExampleAggregateRoot(dummyKey, timeKeeper, snapshot);
       const newSnapshot = newInstance.generateSnapshot();
 
       // Assert
