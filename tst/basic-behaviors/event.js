@@ -8,17 +8,17 @@
 /* global describe */
 /* global it */
 const eventSauce = require('../../lib');
-const PendingEvent = eventSauce.PendingEvent;
+const Event = eventSauce.Event;
 const chai = require('chai');
 const expect = chai.expect;
 
-describe('PendingEvent (Basic Operations)', () => {
+describe('Event (Basic Operations)', () => {
   describe('Construction should', () => {
     it('Succeed with correct inputs', () => {
       // Arrange
 
       // Act
-      const instance = new PendingEvent('someType', {
+      const instance = new Event('someType', {
         someValue: true,
       });
 
@@ -34,7 +34,7 @@ describe('PendingEvent (Basic Operations)', () => {
 
       // Act
       expect(function failure() {
-        return new PendingEvent(null, {
+        return new Event(null, {
           someValue: true,
         });
       }).to.throw(Error);
@@ -45,7 +45,7 @@ describe('PendingEvent (Basic Operations)', () => {
       // Arrange
 
       // Act
-      const instance = new PendingEvent('someType', null);
+      const instance = new Event('someType', null);
       expect(instance.eventData).deep.equal({});
     });
   });
