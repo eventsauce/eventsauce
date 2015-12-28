@@ -53,7 +53,7 @@
             "outputPath": "./dist/docs",
 
             // Include undocumented identifiers
-            "undocumentedIdentifiers": true,
+            "undocumentedIdentifiers": false,
 
             // Include unexported identifiers, required for CommonJS module notation.
             "unexportedIdentifiers": true,
