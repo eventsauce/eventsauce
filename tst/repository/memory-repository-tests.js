@@ -152,4 +152,32 @@ describe('MemoryRepository', () => {
       });
     });
   });
+
+  describe('Cleanup', () => {
+    it('Should release resources', () => {
+        return expect(instance.close()
+          .then(() => {
+            expect(instance._keyToStreamMap).to.equal(null);
+            return Promise.resolve();
+          })).to.eventually.be.fulfilled;
+    });
+    it('Should be re-runnable', () => {
+        return expect(instance.close()
+          .then(() => instance.close())
+          .then(() => {
+            expect(instance._keyToStreamMap).to.equal(null);
+            return Promise.resolve();
+          })).to.eventually.be.fulfilled;
+    });
+    it('Should cause getEvents to fail', () => {
+        return expect(instance.close()
+          .then(() => instance.getEvents(dummyKeyValue, 0, -1)))
+          .to.eventually.be.rejected;
+    });
+    it('Should cause putEvents to fail', () => {
+        return expect(instance.close()
+          .then(() => instance.putEvents(dummyKeyValue, 0, [ { blurch: 'running' }])))
+          .to.eventually.be.rejected;
+    });
+  });
 });
