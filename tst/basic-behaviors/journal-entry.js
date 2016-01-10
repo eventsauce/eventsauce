@@ -1,0 +1,43 @@
+/**
+ *   ___             _   ___                       EventSauce
+ *   | __|_ _____ _ _| |_/ __| __ _ _  _ __ ___    CQRS / Event Sourcing Framework for NodeJS
+ *   | _|\ V / -_) ' \  _\__ \/ _` | || / _/ -_)   (c) 2016 Steve Gray / eventualconsistency.net
+ *   |___|\_/\___|_||_\__|___/\__,_|\_,_\__\___|   This code is GPL v2.0 licenced.
+ **/
+'use strict';
+/* global describe */
+/* global it */
+const eventSauce = require('../../lib');
+const AggregateEvent = eventSauce.AggregateEvent;
+const JournalEntry = eventSauce.JournalEntry;
+const chai = require('chai');
+const expect = chai.expect;
+
+describe('JournalEntry (Basic Operations)', () => {
+  describe('Construction', () => {
+    const input = {
+      aggregateType: 'some-agg',
+      aggregateKey: 'some-key',
+      revision: 1234,
+      event: new AggregateEvent('some-event', '{ "foo": 5678 }'),
+    };
+
+    it('Should succeed with correct inputs', () => {
+      // Act
+      const instance = new JournalEntry(input);
+
+      // Assert
+      expect(instance.toObject()).to.deep.equal(input);
+    });
+
+    it('Should fail if any property is missing', () => {
+      Object.keys(input).forEach((key) => {
+        const clone = JSON.parse(JSON.stringify(input));
+        delete clone[key];
+        expect(() => {
+          return new JournalEntry(clone);
+        }).to.throw(Error);
+      });
+    });
+  });
+});
