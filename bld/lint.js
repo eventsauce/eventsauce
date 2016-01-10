@@ -10,6 +10,10 @@ module.exports = function runLinting() {
     extends: 'airbnb',
     rules: {
       strict: [2, 'global'],
+       'max-len': [2, 200, 2, {
+          'ignoreUrls': true,
+          'ignoreComments': false
+        }],
     },
     ecmaFeatures: {
       modules: false,
