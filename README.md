@@ -1,6 +1,8 @@
 ![eventsauce logo](./manual/img/logo.png)
 
-Travis-CI Status: ![Travis-CI Build: eventsauce](https://travis-ci.org/eventsauce/eventsauce.svg?branch=master)
+![Travis-CI Build: eventsauce](https://travis-ci.org/eventsauce/eventsauce.svg?branch=master)
+![Dev Dependencies](https://david-dm.org/eventsauce/eventsauce/status.svg)
+![Dev Dependencies](https://david-dm.org/eventsauce/eventsauce/dev-status.svg)
 
 # About eventsauce
 **eventsauce** is an event-sourcing/CQRS Framework in Javascript, 
