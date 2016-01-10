@@ -36,6 +36,7 @@
     "browserify": "^13.0.0",
     "chai": "^3.4.1",
     "chai-as-promised": "^5.2.0",
+    "config": "^1.17.1",
     "eslint": "^1.10.3",
     "eslint-config-airbnb": "^3.1.0",
     "eslint-plugin-react": "^3.11.3",
@@ -53,7 +54,6 @@
     "vinyl-source-stream": "^1.1.0"
   },
   "dependencies": {
-    "config": "^1.17.1",
     "sprintf-js": "^1.0.3"
   }
 }
