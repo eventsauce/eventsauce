@@ -8,17 +8,17 @@
 /* global describe */
 /* global it */
 const eventSauce = require('../../lib');
-const Event = eventSauce.Event;
+const AggregateEvent = eventSauce.AggregateEvent;
 const chai = require('chai');
 const expect = chai.expect;
 
-describe('Event (Basic Operations)', () => {
+describe('AggregateEvent (Basic Operations)', () => {
   describe('Construction should', () => {
     it('Succeed with correct inputs', () => {
       // Arrange
 
       // Act
-      const instance = new Event('someType', {
+      const instance = new AggregateEvent('someType', {
         someValue: true,
       });
 
@@ -34,7 +34,7 @@ describe('Event (Basic Operations)', () => {
 
       // Act
       expect(function failure() {
-        return new Event(null, {
+        return new AggregateEvent(null, {
           someValue: true,
         });
       }).to.throw(Error);
@@ -45,7 +45,7 @@ describe('Event (Basic Operations)', () => {
       // Arrange
 
       // Act
-      const instance = new Event('someType', null);
+      const instance = new AggregateEvent('someType', null);
       expect(instance.eventData).deep.equal({});
     });
   });
