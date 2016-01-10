@@ -4,7 +4,7 @@
   "description": "NodeJS Event Sourcing framework written in ECMAScript 6",
   "main": "index.js",
   "scripts": {
-    "test": "gulp test-full"
+    "test": "gulp full-build"
   },
   "repository": {
     "type": "git",
