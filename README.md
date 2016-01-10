@@ -1,4 +1,4 @@
-![eventsauce logo](manual/logo_full.png?raw=true "eventsauce logo")
+![eventsauce logo](./manual/img/logo.png)
 
 # eventsauce
 **eventsauce** is an event-sourcing/CQRS Framework in Javascript, 
