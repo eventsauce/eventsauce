@@ -9,6 +9,7 @@ const chai = require('chai');
 const chaiAsPromised = require('chai-as-promised');
 const expect = chai.expect;
 const should = chai.should();
+const ExampleContext = require('../example-domain/example-context');
 
 chai.use(chaiAsPromised);
 
@@ -17,12 +18,18 @@ describe('MemoryRepository', () => {
 
   let instance = null;
   beforeEach(() => {
-    instance = new MemoryRepository();
+    const context = new ExampleContext();
+    instance = new MemoryRepository(context);
   });
 
   describe('Construction', () => {
     it('Can be instanciated', () => {
       should.exist(instance);
+    });
+    it('Should fail without context', () => {
+      expect(() => {
+        return new MemoryRepository(null);
+      }).to.throw(Error);
     });
   });
 
@@ -104,7 +111,7 @@ describe('MemoryRepository', () => {
       });
       it('Should succeed silently with 0 input events', () => {
         return expect(instance.putEvents(dummyKeyValue, 0, []))
-          .to.eventually.equal(0);
+          .to.eventually.be.fulfilled;
       });
       it('Should not allow append before end of stream', () => {
         return expect(instance.putEvents(dummyKeyValue, 0, [

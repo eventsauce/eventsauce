@@ -13,7 +13,7 @@ const JournalEntry = eventSauce.JournalEntry;
 const chai = require('chai');
 const expect = chai.expect;
 
-describe('JournalEntry (Basic Operations)', () => {
+describe('JournalEntry', () => {
   describe('Construction', () => {
     const input = {
       aggregateType: 'some-agg',

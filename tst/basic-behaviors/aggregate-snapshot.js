@@ -12,7 +12,7 @@ const AggregateSnapshot = eventSauce.AggregateSnapshot;
 const chai = require('chai');
 const expect = chai.expect;
 
-describe('AggregateSnapshot (Basic Operations)', () => {
+describe('AggregateSnapshot', () => {
   describe('Construction should', () => {
     it('Succeed with correct inputs', () => {
       // Arrange

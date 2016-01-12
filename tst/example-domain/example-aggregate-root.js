@@ -9,6 +9,9 @@
 const eventSauce = require('../../lib');
 const Aggregate = eventSauce.Aggregate;
 const ExampleState = require('./example-state');
+const CreatedEvent = require('./created-event');
+const TickEvent = require('./tick-event');
+const TockEvent = require('./tock-event');
 
 /**
  * The ExampleAggregateRoot is an example aggregate that tracks state.
@@ -51,9 +54,9 @@ class ExampleAggregateRoot extends Aggregate {
     }
 
     // Mutate.
-    this.applyEvent('created', {
+    this.applyEvent(new CreatedEvent({
       time: this._timeKeeper.getTime(),
-    });
+    }));
   }
 
   /**
@@ -66,9 +69,9 @@ class ExampleAggregateRoot extends Aggregate {
     }
 
     // Mutate.
-    this.applyEvent('tick', {
+    this.applyEvent(new TickEvent({
       time: this._timeKeeper.getTime(),
-    });
+    }));
   }
 
   /**
@@ -81,9 +84,9 @@ class ExampleAggregateRoot extends Aggregate {
     }
 
     // Mutate. Should fail due to missing method.
-    this.applyEvent('tock', {
+    this.applyEvent(new TockEvent({
       time: this._timeKeeper.getTime(),
-    });
+    }));
   }
 
   /**

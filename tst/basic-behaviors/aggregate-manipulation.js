@@ -76,6 +76,28 @@ describe('Aggregate', () => {
   });
 
   describe('State management', () => {
+    it('Should not permit null applyEvent', () => {
+      // Arrange
+      const timeKeeper = new TimeKeeper();
+      const instance = new ExampleAggregateRoot(dummyKey, timeKeeper);
+
+      expect(() => {
+        instance.applyEvent(null);
+      }).to.throw(Error);
+    });
+
+    it('Should not permit non-AggregateEvent applyEvent', () => {
+      // Arrange
+      const timeKeeper = new TimeKeeper();
+      const instance = new ExampleAggregateRoot(dummyKey, timeKeeper);
+
+      expect(() => {
+        instance.applyEvent({
+          foo: 'bar',
+        });
+      }).to.throw(Error);
+    });
+
     it('currentState should return the state object', () => {
       // Arrange
       const timeKeeper = new TimeKeeper();
