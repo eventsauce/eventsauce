@@ -1,7 +1,14 @@
 language: node_js
 node_js:
-  - "5.2"
-  - "4.1"
-  - "4.0"
-
+- '5.2'
+- '4.1'
+- '4.0'
 script: gulp full-build
+deploy:
+  provider: npm
+  email: eventsauce@cobaltsoftware.net
+  api_key:
+    secure: RvM8apuhCBS7OhygS1plYSDeMdEmPnXYgnTadROielRaao/JVyYm8D1yPWmdUU0d1zjNPaH+KkxB3DXaw1OL193cgfgqdkwPS9BW4jya4arSGvK6F+GH/UpQVp3e9kW7rT4zFzKhJcDNJHr5r+CxHTUXWLt138e4dniaFh1Wq/rODZlwdSaEXToNFjB9csydNo/+l/DDiOycBPIDr06ttyLddjO+m/9djSLrxHAiEpCw1YflTW5q2j7klDFYdQuCzqlklgvxFFfKYKlEcAx/sRVcrWxCMUliQa59etGWEwKzIUVRaTgUyhRV6MUyTl4MAh1kXAd65fuvisxVcL1u2FKxo2j8xJkTGxvHs8qliNdagV90OQxN5V1Nu06LQbz1+d7SUef01NQcIleH+tf6MNjopd/mt7Re9Vd49SZBhorOpAAdA7C+C+VChjO4crsLIMJQApDx5nMgLTmhVFO6lPNAbJ/oSbw5lK9sjpF8Wg7YrLKuy5uHY8EJcZbhAt9aCfnYt71HlIhRbPKirm2nsii/GXLqy4WNMa675JP79/0dP2gSql+7nwTr5WE99icORw4Hv3eLZ8v+sxWIEzJePR6O/1rJXh5W4Y2TzledCrJ8WRzzvzJY1GobNof/jH1rMD8yIoOiZW5zQSaLHKDPdEvAdSP03gqfIAZNsMIfufs=
+  on:
+    tags: true
+    repo: steve-gray/eventsauce
