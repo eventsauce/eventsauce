@@ -6,18 +6,30 @@
  **/
 'use strict';
 
+const eventSauce = require('../../lib');
+const AggregateEvent = eventSauce.AggregateEvent;
+
 /**
- * Describes an event for an aggregate. Events should have a .toObject() method and a static
- * .fromObject() method that allows easy serialization and deserialization. Should not be used
- * directly.
- **/
-class AggregateEvent {
+ * TockEvent
+ */
+class TockEvent extends AggregateEvent {
 
   /**
-   * Initialize a new instance of the AggregateEvent.
-   **/
-  constructor() {
-    // Intentionally blank
+   * Initialize a new instance of the event.
+   */
+  constructor(input) {
+    super();
+
+    if (input) {
+      this._time = input.time;
+    }
+  }
+
+  /**
+   * Creation time
+   */
+  get time() {
+    return this._time;
   }
 
   /**
@@ -25,7 +37,7 @@ class AggregateEvent {
    * @returns {String}                    - Name of event type.
    **/
   get eventType() {
-    throw new Error('eventType has not been overriden in this aggregate definition');
+    return 'tock';
   }
 
   /**
@@ -34,7 +46,7 @@ class AggregateEvent {
    * @returns {AggregateEvent}            - Parsed event
    */
   static fromObject(object) {
-    throw new Error('fromObject must be overriden in each AggregateEvent definition: ' + object);
+    return new TockEvent(object);
   }
 
   /**
@@ -42,8 +54,10 @@ class AggregateEvent {
    * @returns {Object}                    - Object for serialization
    */
   toObject() {
-    throw new Error('toObject has not been overriden in this aggregate definition');
+    return {
+      time: this.time,
+    };
   }
 }
 
-module.exports = AggregateEvent;
+module.exports = TockEvent;

@@ -5,48 +5,65 @@
  *   |___|\_/\___|_||_\__|___/\__,_|\_,_\__\___|   This code is GPL v2.0 licenced.
  **/
 'use strict';
+/* global beforeEach */
 /* global describe */
 /* global it */
 const eventSauce = require('../../lib');
 const AggregateEvent = eventSauce.AggregateEvent;
 const chai = require('chai');
+const dirtyChai = require('dirty-chai');
 const expect = chai.expect;
+chai.use(dirtyChai);
 
-describe('AggregateEvent (Basic Operations)', () => {
-  describe('Construction should', () => {
-    it('Succeed with correct inputs', () => {
+describe('AggregateEvent', () => {
+  describe('Construction', () => {
+    it('Should succeed with no inputs', () => {
       // Arrange
 
       // Act
-      const instance = new AggregateEvent('someType', {
-        someValue: true,
-      });
+      const instance = new AggregateEvent();
 
       // Assert
-      expect(instance.eventType).to.equal('someType');
-      expect(instance.eventData).deep.equal({
-        someValue: true,
+      expect(instance.toObject).to.exist();
+    });
+  });
+
+  describe('Operations', () => {
+    describe('prototype.fromObject', () => {
+      it('Should exist', () => {
+        expect(AggregateEvent.fromObject).to.exist();
+      });
+      it('Should throw exception since abstract', () => {
+        expect(() => {
+          AggregateEvent.fromObject({});
+        }).to.throw(Error);
       });
     });
-
-    it('Not succeed with bad event type name', () => {
-      // Arrange
-
-      // Act
-      expect(function failure() {
-        return new AggregateEvent(null, {
-          someValue: true,
-        });
-      }).to.throw(Error);
+    describe('instance.eventType', () => {
+      let instance = null;
+      beforeEach(() => {
+        instance = new AggregateEvent();
+      });
+      it('Should throw exception since abstract', () => {
+        expect(() => {
+          return instance.eventType;
+        }).to.throw(Error);
+      });
     });
+    describe('instance.toObject', () => {
+      let instance = null;
+      beforeEach(() => {
+        instance = new AggregateEvent();
+      });
 
-
-    it('Should succeed with null event data', () => {
-      // Arrange
-
-      // Act
-      const instance = new AggregateEvent('someType', null);
-      expect(instance.eventData).deep.equal({});
+      it('Should exist', () => {
+        expect(instance.toObject).to.exist();
+      });
+      it('Should throw exception since abstract', () => {
+        expect(() => {
+          return instance.toObject();
+        }).to.throw(Error);
+      });
     });
   });
 });
