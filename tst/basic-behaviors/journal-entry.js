@@ -8,18 +8,20 @@
 /* global describe */
 /* global it */
 const eventSauce = require('../../lib');
-const AggregateEvent = eventSauce.AggregateEvent;
+const UnknownEvent = require('../../lib/unknown-event');
 const JournalEntry = eventSauce.JournalEntry;
 const chai = require('chai');
 const expect = chai.expect;
 
 describe('JournalEntry', () => {
   describe('Construction', () => {
+    const event = new UnknownEvent('some-event', { foo: 5678 });
     const input = {
       aggregateType: 'some-agg',
       aggregateKey: 'some-key',
       revision: 1234,
-      event: new AggregateEvent('some-event', '{ "foo": 5678 }'),
+      eventType: event.eventType,
+      eventData: event.toObject(),
     };
 
     it('Should succeed with correct inputs', () => {
