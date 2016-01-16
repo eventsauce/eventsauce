@@ -44,10 +44,17 @@ describe('AggregateEvent', () => {
       beforeEach(() => {
         instance = new AggregateEvent();
       });
-      it('Should throw exception since abstract', () => {
-        expect(() => {
-          return instance.eventType;
-        }).to.throw(Error);
+      it('Should return AggregateEvent', () => {
+        expect(instance.eventType).to.equal('AggregateEvent');
+      });
+      it('Should return correct type on subclassing', () => {
+        class SubEventType extends AggregateEvent {
+          constructor() {
+            super();
+          }
+        }
+        const subType = new SubEventType();
+        expect(subType.eventType).to.equal('SubEventType');
       });
     });
     describe('instance.toObject', () => {
