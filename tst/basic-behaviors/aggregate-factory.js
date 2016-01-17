@@ -60,7 +60,7 @@ describe('AggregateFactory', () => {
         this.tickCount = (this.tickCount || 0) + 1;
         this.lastMessage = event.message;
       });
-      AggregateType.prototype.tick = function() {
+      AggregateType.prototype.tick = function runTickCommand() {
         this.applyEvent(TickEvent.fromObject({
           lastMessage: 'Tick ' + ticks,
         }));
@@ -94,7 +94,7 @@ describe('AggregateFactory', () => {
         this.tickCount = (this.tickCount || 0) + 1;
         this.lastMessage = event.message;
       });
-      AggregateType.prototype.tick = function() {
+      AggregateType.prototype.tick = function runTickCommand() {
         this.applyEvent(TickEvent.fromObject({
           lastMessage: 'Tick ' + ticks,
         }));
@@ -113,7 +113,7 @@ describe('AggregateFactory', () => {
         throw new Error('Fail');
       }).catch(() => {
         // Expect we never committed
-        expect(theAgg.pendingEvents.length).to.equal(1); 
+        expect(theAgg.pendingEvents.length).to.equal(1);
         return 'success';
       })).to.eventually.deep.equal('success');
     });
@@ -129,7 +129,7 @@ describe('AggregateFactory', () => {
         this.tickCount = (this.tickCount || 0) + 1;
         this.lastMessage = event.message;
       });
-      AggregateType.prototype.tick = function() {
+      AggregateType.prototype.tick = function runTickCommand() {
         this.applyEvent(TickEvent.fromObject({
           lastMessage: 'Tick ' + ticks,
         }));
@@ -169,7 +169,7 @@ describe('AggregateFactory', () => {
         this.tickCount = (this.tickCount || 0) + 1;
         this.lastMessage = event.message;
       });
-      AggregateType.prototype.tick = function() {
+      AggregateType.prototype.tick = function runTickCommand() {
         this.applyEvent(TickEvent.fromObject({
           lastMessage: 'Tick ' + ticks,
         }));
@@ -213,7 +213,7 @@ describe('AggregateFactory', () => {
 
         // Act
         expect(() => {
-          instance.withAggregate(null, (agg) => {
+          instance.withAggregate(null, () => {
             // Intentionally bank
           });
         }).to.throw(Error);
