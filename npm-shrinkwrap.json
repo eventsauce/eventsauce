@@ -1,6 +1,6 @@
 {
   "name": "eventsauce",
-  "version": "0.0.5",
+  "version": "0.0.8",
   "dependencies": {
     "abbrev": {
       "version": "1.0.7",
@@ -656,7 +656,7 @@
     },
     "debug": {
       "version": "2.2.0",
-      "from": "debug@*",
+      "from": "debug@>=2.2.0 <3.0.0",
       "resolved": "https://registry.npmjs.org/debug/-/debug-2.2.0.tgz"
     },
     "decamelize": {
@@ -730,6 +730,11 @@
       "version": "5.0.0",
       "from": "diffie-hellman@>=5.0.0 <6.0.0",
       "resolved": "https://registry.npmjs.org/diffie-hellman/-/diffie-hellman-5.0.0.tgz"
+    },
+    "dirty-chai": {
+      "version": "1.2.2",
+      "from": "dirty-chai@>=1.2.2 <2.0.0",
+      "resolved": "https://registry.npmjs.org/dirty-chai/-/dirty-chai-1.2.2.tgz"
     },
     "doctrine": {
       "version": "0.7.2",
