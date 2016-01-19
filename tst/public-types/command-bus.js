@@ -118,15 +118,17 @@ describe('CommandBus', () => {
       it('Should throw for arguments not containing commandName', () => {
         return expect(() => {
           instance.processCommand({
-          invalidCommandName: 'someCommand',
-        })}).to.throw(Error);
+            invalidCommandName: 'someCommand',
+          });
+        }).to.throw(Error);
       });
 
       it('Should throw for unmapped commandName', () => {
         return expect(() => {
           instance.processCommand({
-          commandName: 'noSuchCommand',
-        })}).to.throw(Error);
+            commandName: 'noSuchCommand',
+          });
+        }).to.throw(Error);
       });
     });
   });
