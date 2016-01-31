@@ -1,6 +1,6 @@
 {
   "name": "eventsauce",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "NodeJS Event Sourcing framework written in ECMAScript 6",
   "main": "index.js",
   "scripts": {
